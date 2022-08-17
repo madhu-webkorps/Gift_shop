@@ -1,0 +1,22 @@
+
+<div class = "row">
+    <div class = "col-lg-2">
+    <%=  render 'admin/side-bar' %>
+    </div>
+
+    <div class = "col-lg-10">
+    <br>
+    <%=  render 'admin/header' %>
+    </div>
+<h1>Categories#edit</h1>
+<h1>Editing User</h1>
+
+
+<%= render 'form', product: @category %>
+<div class="form-group mt-5 w-25 ml-5 ">
+    <%= link_to 'Show', @category , class:"btn btn-primary ml-1 mr-3" %> 
+    <%= link_to 'Back', categories_path  , class:"btn btn-primary" %>
+</div>
+
+
+</div>

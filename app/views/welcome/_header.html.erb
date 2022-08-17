@@ -1,0 +1,56 @@
+<div class="w3-top">
+  <div class="w3-bar w3-black w3-card">
+    <%# <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a> %>
+  <div>
+  <i class="fa fa-gift  w3-bar-item w3-padding-small" style = "font-size: 40px; color:yellow; padding-left:10px; margin-right:-11px; margin-top:11px; margin-left:28px;"> </i>
+   <%= link_to "Giftry" , root_path , class: "w3-bar-item w3-button  w3-text-white", style: "font-family: 'Permanent Marker', cursive;
+font-family: 'Roboto Slab', serif; font-size: 37px; padding-left:-3px;" %>
+  </div> 
+    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-text-white" style = "font-size: 24px;">HOME</a>
+    <a href="#band" class="w3-bar-item w3-button w3-padding-large w3-hide-small w3-text-white"style = "font-size: 24px;">BAND</a>
+    <a href="#tour" class="w3-bar-item w3-button w3-padding-large w3-hide-small w3-text-white" style = "font-size: 24px;">TOUR</a>
+    
+    <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hide-small w3-text-white" style = "font-size: 24px;">CONTACT</a>
+<% if user_signed_in? %>
+<% @user = current_user%>
+     
+     <%= link_to "Log Out", destroy_user_session_path , method: :delete, class: "nav-item m-3 text-white text-decoration-none btn btn-danger float-right"%>
+      
+      
+      <% if @user.image.attached? %>
+       <%= link_to user_path(@user.id) do %>       
+      <%= image_tag @user.image.variant(resize_to_limit: [40,40]),style:"float:right;margin-top:15px;border-radius:50%;"%>
+      <%end%>
+      <%end%>
+       
+<% elsif admin_signed_in? %>
+      <%= link_to "Log Out", destroy_admin_session_path , method: :delete, class: "nav-item m-3 text-white text-decoration-none btn btn-danger float-right"%>
+      
+<% else %>
+    <%= link_to "Sign Up", new_user_registration_path, class: " w3-padding-large w3-hover-red w3-hide-small w3-right w3-button w3-blue", style: "margin-top:12px; margin-right:15px;"%> 
+    
+         <div class="w3-dropdown-hover" style = "margin-top:12px; margin-right:10px;float:right">
+              <button class="w3-button w3-blue w3-padding-large">Log in</button>
+              <div class="w3-dropdown-content w3-bar-block w3-border">
+                <%= link_to " User Log In", new_user_session_path , style: "text-decoration:none ", class: "w3-bar-item w3-button"%>
+               <%= link_to " Admin Log In", new_admin_session_path ,class: "w3-bar-item w3-button"%>
+              </div>
+        </div>
+
+    <%# <%= link_to "Log In", new_user_session_path , class: "nav-item m-3 text-white text-decoration-none btn btn-success float-right"%>
+<% end %>
+      
+       <%# <form class="navbar-form navbar-left" action="/action_page.php">
+  <div class="input-group">
+    <input type="text" class="form-control" placeholder="Search">
+    <div class="input-group-btn">
+      <button class="btn btn-default" type="submit">
+        <i class="glyphicon glyphicon-search"></i>
+      </button>
+    </div>
+  </div>
+</form> %>
+
+
+</div>
+</div>

@@ -1,0 +1,23 @@
+
+<div class = "row">
+    <div class = "col-lg-2">
+    <%=  render 'admin/side-bar' %>
+    </div>
+
+    <div class = "col-lg-10">
+    <br>
+    <%=  render 'admin/header' %>
+    </div>
+<div class="container border my-5">
+
+    <div class="row">
+        <div class="col-sm-6 ml-5" >
+        <br>
+            <h1 class = "text-center">New Category</h1>
+
+            <%= render 'form' , product: @category %>
+            <%= link_to 'Back' , categories_path , class:"btn btn-primary float-right mr-5 "%> <br>
+        </div>
+    </div>
+    <br>
+</div>

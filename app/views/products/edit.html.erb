@@ -1,0 +1,22 @@
+<div class = "row">
+    <div class = "col-lg-2">
+    <%=  render 'admin/side-bar' %>
+    </div>
+
+    <div class = "col-lg-10">
+    <br>
+    <%=  render 'admin/header' %>
+    </div>
+
+<h1>Editing User</h1>
+
+
+<%= render 'form', product: @product %>
+
+<%= link_to 'Show', @product %> |
+<%= link_to 'Back', products_path %>
+
+
+
+
+</div>

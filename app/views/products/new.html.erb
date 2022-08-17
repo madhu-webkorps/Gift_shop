@@ -1,0 +1,24 @@
+
+<div class = "row">
+    <div class = "col-lg-2">
+    <%=  render 'admin/side-bar' %>
+    </div>
+
+    <div class = "col-lg-10">
+    <br>
+    <%=  render 'admin/header' %>
+    </div>
+<div class="container border my-5 ">
+<br>
+
+    <div class="row">
+        <div class="col-sm-6 ml-5" >
+        <br>
+            <h1 class = "text-center">New Product</h1>
+
+            <%= render 'form' , product: @product %>
+            <%= link_to 'Back' , products_path  , class: ""%>
+        </div>
+    </div>
+    <br><br><br>
+</div>

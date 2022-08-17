@@ -1,0 +1,79 @@
+<div class = "row">
+    <div class = "col-lg-2">
+    <%=  render 'admin/side-bar' %>
+    </div>
+
+    <div class = "col-lg-10">
+    <br>
+    <%=  render 'header' %>
+    </div>
+
+<br><br>
+<h2>product page</h2>
+
+ <div class="row">
+                 <div class="col-sm-3 col-md-8 mb-4">
+                 <%= link_to 'Add Product' , new_product_path , class: "btn btn-primary "%>
+<br><br>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Image</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                         <th scope="col">Description</th>
+                         <th scope="col">Status</th>
+                         <th scope="col">Category</th>
+                        <th scope="col" colspan="2">Actions</th>
+                         
+                    </tr>
+                </thead>
+               
+                <% @product.each do |product| %>
+                    <tbody>
+                        <tr>
+                            <td>
+                            <%= image_tag product.image.variant(resize_to_limit: [100,100]),style:"margin-top:15px;" %>
+                            </td>
+                            <td>
+                                <%= product.name%>
+                            </td>
+                            <td>
+                                <%= product.price %>
+                            </td>
+                            <td>
+                                <%= product.description %>
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <% if product.status == "1"%>
+                                     Active
+                                  <%else%> 
+                                      Deactive
+                                  <%end%>
+                                
+                            </td>
+                          
+                            <td>
+                                <%= product.category.name %>
+                            </td>
+                            <td>
+                                <%# <%= user.pin_code %> 
+                            </td>
+                            <td>
+                            <%= link_to 'Edit' , edit_product_path(product) , class:"btn btn-primary" %>
+                                
+                            </td>
+
+                            <td>
+                                <%= link_to 'Destroy' , product , method: :delete, data: { confirm: 'Are you sure?'},class:"btn
+                                    btn-primary" %>
+                            </td>
+                            
+                            
+                             </tbody>
+                        <%end %>
+
+            </table>
+        </div>
+    <div>
