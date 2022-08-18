@@ -41,15 +41,17 @@
 </div>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="#">Navbar</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
+           <%= link_to "Products", products_path , remote: :true ,class:"w3-bar-item w3-button w3-padding-large w3-text-black" , style: "font-family: 'Permanent Marker', cursive;
+font-family: 'Roboto Slab', serif;font-size: 24px;" %>
+               
             <% @category.each do |category|%>
               <li class="nav-item active ml-2">
-                <%= link_to "#{category.name}" , products_path(category_id: category.id), remote: :true %>
+                <%# <a href="#newarrival" onclick="w3_close()" class="w3-bar-item w3-button">New Arrival</a> %>
+  
+              <%= link_to "#{category.name}", products_path(category_id: category.id) , remote: :true  ,class:"w3-bar-item w3-button w3-padding-large w3-text-black" , style: "font-family: 'Permanent Marker', cursive;
+font-family: 'Roboto Slab', serif;font-size: 24px;" ,onclick:"w3_close()" %>
                 <%# <a class="nav-link" href="#"><%= category.name%><span class="sr-only">(current)</span></a> 
               </li>
              <%end%>
@@ -62,43 +64,52 @@
     <br><br>
     <%# cards end %>
 
-        <div class="container">
-            <div class="row">
-                <% @product.each do |product| %>
+        
+<div class="container">
+  <div class="row" id = "ProductsByCategory">
 
-                    <div class="col-lg-5 mb-4">
-                        <div class="card" style="width:400px">
-                            <%= image_tag product.image.variant(resize_to_limit: [100,100]) ,style: "max-width:100%;" ,
-                                class:"card-img-top" %>
-                                <div class="card-body">
-                                    <br>
-                                    <h4 class="card-title">
-                                        <%= product.name%>
-                                    </h4>
-                                    <p class="card-text">
-                                        <%= product.description%>
-                                    </p>
-                                    <p class="card-text"><small class="text-muted"> updated at <%= product.updated_at%>
-                                                ago</small></p>
-                                    <p className="price">₹<%= product.price%>/-</p>
-                                    <br>
-                                    <p>
-                                        <%= link_to "Add to Cart" , product_path(product.id), class: "btn btn-primary"
-                                            %>
-                                    </p>
+ <div >
+  <div id = allProduct class="row">
+  <div class="row">
+ <% @product.each do |product| %>
+   <div class="col-lg-5 mb-4">
+      <div class="card" style="width:400px">
+          <%= image_tag product.image.variant(resize_to_limit: [100,100]) ,style: "max-width:100%;" ,
+              class:"card-img-top" %>
+              <div class="card-body">
+                  <br>
+                  <h4 class="card-title">
+                      <%= product.name%>
+                  </h4>
+                  <p class="card-text">
+                      <%= product.description%>
+                  </p>
+                  <p class="card-text"><small class="text-muted"> updated at <%= product.updated_at%>
+                              ago</small></p>
+                  <p className="price">₹<%= product.price%>/-</p>
+                  <br>
+                  <p>
+                      <%= link_to "Add to Cart" , product_path(product.id), class: "btn btn-primary"
+                          %>
+                  </p>
+                </div>
+      </div>
+       </div>
+   
+  <%end%>
+   </div>    
+     </div>
+
+    <%# Cards will render here %>
+    </div>
+  </div>
+</div>
 
 
-                                </div>
-                        </div>
-                    </div>
-
-                    <%end%>
-
-            </div>
-        </div>
 
 
-          
+
+
 
         <!-- The Tour Section -->
         <div class="w3-black" id="tour">
@@ -205,9 +216,6 @@
         <!-- End Page Content -->
         </div>
 
-<div id = "ProductsByCategory">
-   
-</div>
 
 
         <!-- Image of location/map -->
@@ -225,42 +233,4 @@
                     target="_blank">w3.css</a></p>
         </footer>
 
-        <script>
-            // Automatic Slideshow - change image every 4 seconds
-            var myIndex = 0;
-            carousel();
-
-            function carousel() {
-                var i;
-                var x = document.getElementsByClassName("mySlides");
-                for (i = 0; i < x.length; i++) {
-                    x[i].style.display = "none";
-                }
-                myIndex++;
-                if (myIndex > x.length) { myIndex = 1 }
-                x[myIndex - 1].style.display = "block";
-                setTimeout(carousel, 4000);
-            }
-
-            // Used to toggle the menu on small screens when clicking on the menu button
-            function myFunction() {
-                var x = document.getElementById("navDemo");
-                if (x.className.indexOf("w3-show") == -1) {
-                    x.className += " w3-show";
-                } else {
-                    x.className = x.className.replace(" w3-show", "");
-                }
-            }
-
-            // When the user clicks anywhere outside of the modal, close it
-            var modal = document.getElementById('ticketModal');
-            window.onclick = function (event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
-        </script>
-
-        </body>
-
-        </html>
+       

@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
     
     def index
-      debugger
+      
         @product = Product.all
         @product = @product.where(category_id: params[:category_id]) if params[:category_id].present?
     end

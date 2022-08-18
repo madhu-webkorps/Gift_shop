@@ -1,0 +1,70 @@
+
+<% if params[:category_id].present?  %>
+  <%@product = @product.where(category_id: params[:category_id]) %>
+  <%if !@product.blank? %>
+    <%@product.each do |product| %>
+      <div class="col-lg-5 mb-4">
+        <div class="card" style="width:400px">
+            <%= image_tag product.image.variant(resize_to_limit: [100,100]) ,style: "max-width:100%;" ,
+                class:"card-img-top" %>
+                <div class="card-body">
+                    <br>
+                    <h4 class="card-title">
+                        <%= product.name%>
+                    </h4>
+                    <p class="card-text">
+                        <%= product.description%>
+                    </p>
+                    <p class="card-text"><small class="text-muted"> updated at <%= product.updated_at%>
+                                ago</small></p>
+                    <p className="price">₹<%= product.price%>/-</p>
+                    <br>
+                    <p>
+                   <% if user_signed_in? %>
+                        <%= link_to "Add to Cart" , product_path(product.id), class: "btn btn-primary"
+                        %>
+                        <% end%>
+                    </p>
+                  </div>
+                </div>
+              </div>
+          <%end%>
+    <%else%>
+    <script>
+    alert(' No Product are  available')
+    </script>
+     
+    <%end%>
+
+
+
+
+<%else%>
+<% @product.each do |product| %>
+   <div class="col-lg-5 mb-4">
+      <div class="card" style="width:400px">
+          <%= image_tag product.image.variant(resize_to_limit: [100,100]) ,style: "max-width:100%;" ,
+              class:"card-img-top" %>
+              <div class="card-body">
+                  <br>
+                  <h4 class="card-title">
+                      <%= product.name%>
+                  </h4>
+                  <p class="card-text">
+                      <%= product.description%>
+                  </p>
+                  <p class="card-text"><small class="text-muted"> updated at <%= product.updated_at%>
+                              ago</small></p>
+                  <p className="price">₹<%= product.price%>/-</p>
+                  <br>
+                  <p>
+                      <%= link_to "Add to Cart" , product_path(product.id), class: "btn btn-primary"
+                          %>
+                  </p>
+                </div>
+      </div>
+       </div>
+   
+  <%end%>
+  <%end%>
+
