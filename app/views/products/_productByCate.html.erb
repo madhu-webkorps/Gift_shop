@@ -20,10 +20,10 @@
                     <p className="price">₹<%= product.price%>/-</p>
                     <br>
                     <p>
-                   <% if user_signed_in? %>
-                        <%= link_to "Add to Cart" , product_path(product.id), class: "btn btn-primary"
-                        %>
-                        <% end%>
+                        <%# <%= link_to "Show" , product_path(product.id), class: "btn btn-primary"
+                        %> 
+                        <%= button_to "Add #{product.name} to cart", cartproducts_path(product_id: product.id) %>
+ 
                     </p>
                   </div>
                 </div>

@@ -1,5 +1,7 @@
 class Category < ApplicationRecord
    
-    has_many :product, foreign_key: "reference_id"
+    has_many :product,  dependent: :destroy
+    validates :name , uniqueness: true , presence: true
+
 
 end

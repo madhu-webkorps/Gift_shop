@@ -10,19 +10,20 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.new(category_params)
-
     respond_to do |format|
+     
       if @category.save
-        redirect_to categories_path
-        # BaseWorkerJob.perform_async(@category.id)
         format.html { redirect_to categories_path , notice: "category was successfully created." }
         format.json { render :show, status: :created, location: @category }
         format.js
        
-        # CrudNotificationMailer.create_notification(@product).deliver_now
-        # CrudNotificationMailer.welcome(@product, "hii.html","app/views/products/hii.html").deliver
-      else
-       
+        else
+          debugger
+          if @category.errors.message
+            @category.errors.each do |error|
+              error.full_message
+            end 
+          end
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @category.errors, status: :unprocessable_entity }
         format.js
@@ -43,7 +44,7 @@ class CategoriesController < ApplicationController
         @category = Category.where(id: params[:id]).first
         
         if @category.update_attributes(category_params)
-          debugger
+          
           redirect_to categories_path
         else
             # rnder update page agian

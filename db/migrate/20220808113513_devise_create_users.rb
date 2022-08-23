@@ -13,11 +13,11 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
 
       ## Rememberable
       t.datetime :remember_created_at
-t.string :frist_name
-t.string :last_name
-t.string :pin_code
-t.string :address
-t.string :phone_no
+      t.string :frist_name
+      t.string :last_name
+      t.string :pin_code
+      t.string :address
+      t.string :phone_no
       ## Trackable
       # t.integer  :sign_in_count, default: 0, null: false
       # t.datetime :current_sign_in_at
@@ -35,7 +35,7 @@ t.string :phone_no
       # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
-
+      t.integer :role 
 
       t.timestamps null: false
     end

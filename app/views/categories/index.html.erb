@@ -13,50 +13,39 @@
 <%# <h2>Category page</h2> %>
 <br>
  <div class="row">
-                 <div class="col-xl-3 col-md-6 mb-4">
-                 <%= link_to 'Add Category' , new_category_path , class: "btn btn-primary "%>
+    <div class="col-xl-3 col-md-6 mb-4">
+    <%= link_to 'Add Category' , new_category_path , class: "btn btn-primary "%>
 <br><br>
-            <table class="table ">
-                <thead>
-                    <tr>
-                        <th scope="col">Name</th>
-                        
-                         <th scope="col">Status</th>
-                        
-                         <th scope="col" colspan="3">Actions</th>
-                         
-                        
-
-                    </tr>
-                </thead>
-               
-                <% @category.each do |category| %>
-                    <tbody>
-                        <tr>
-
-                            <td>
-                                <%= category.name%>
-                            </td>
-                            
-                            <td>
-                                <% if category.status == "1"%>
-                                Active
-                                <%end%>
-                            </td>
-                          
-                            
-                            <td>
-                                <%# <%= user.pin_code %> 
-                            </td>
-                            <td>
-                            <%= link_to 'Edit' , edit_category_path(category) , class:"btn btn-primary" %>
-                                
-                            </td>
-
-                            <td>
-                                <%= link_to 'Destroy' , category , method: :delete, data: { confirm: 'Are you sure?'},class:"btn
-                                    btn-primary" %>
-                            </td>
+      <table class="table ">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Status</th>
+            <th scope="col" colspan="3">Actions</th>
+        </tr>
+        </thead>
+          
+          <% @category.each do |category| %>
+            <tbody>
+              <tr>
+              <td>
+                  <%= category.name%>
+              </td>
+              <td>
+                <% if category.status == "1"%>
+                Active
+                <%end%>
+              </td>
+              <td>
+                <%# <%= user.pin_code %> 
+              </td>
+              <td>
+              <%= link_to 'Edit' , edit_category_path(category) , class:"btn btn-primary" %>
+              </td>
+              <td>
+                  <%= link_to 'Destroy' , category , method: :delete, data: { confirm: 'Are you sure?'},class:"btn
+                  btn-primary" %>
+              </td>
 
                             <td>
                                 <%# <%= link_to 'New Product',category_product_path(category.id)  ,class:"btn %>

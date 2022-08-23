@@ -1,0 +1,42 @@
+
+<div class="container mt-5 w-50">
+  <div class="row mt-5 border p-5">
+    <div class = "col-md-6"style = "margin-left:12rem;">
+      <h1 class = "text-center  text-primary">Product details</h1>
+      <hr>
+      <br>
+        <span class="card" style="width: 100%;">
+          <%= image_tag @product.image.variant(resize_to_limit: [100,100]),style:"height:10%;" %>
+            <span class="card-body text-center">
+            <h3 class="card-title"><%= @product.name%></h3>
+            <p class="card-text"><b><%= @product.description%> </b>
+
+             is made with chocolate. It can also include other ingredients. These include fudge, vanilla creme, and other sweeteners. </p>
+              <h4 className="price">₹<%= @product.price%>/-</h4><br>
+                    
+            <%= link_to "Buy Now",  checkout_create_path(product_id: @product.id), class: "btn btn-warning" ,remote: true%>
+            <%# <%= link_to "Add to Cart",  new_checkout_path , class: "btn btn-warning" ,remote: true%> %>
+        <%= button_to "Add #{@product.name} to cart",  cartproducts_path(:product_id => @product.id)%> 
+          </span>
+      </span>
+    </div>
+
+    <%= form_tag checkouts_path do %>
+<article>
+  <% if flash[:error].present? %>
+  <div id="error_explanation">
+    <p><%= flash[:error] %></p>
+  </div>
+  <% end %>
+  <label class="amount">
+  <span>Amount: $<%= @product.price%> </span>
+  </label>
+</article>
+<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+  data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+  data-description="A month's subscription"
+  data-amount="<%= @product.price %>"
+  data-locale="auto"></script>
+<% end %>
+  </div>
+</div>

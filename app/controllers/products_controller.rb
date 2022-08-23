@@ -1,9 +1,25 @@
 class ProductsController < ApplicationController
-    
+  before_action :set_product, only: %i[ show update destroy ]
+
+
+
+  def add_to_cart
+    id = params[:id].to_i
+    session[:cart] << id unless session[:cart].include?(id)
+    redirect_to root_path
+  end
+
+  def remove_from_cart
+    id = params[:id].to_i
+    session[:cart].delete(id)
+    redirect_to root_path
+  end
+
     def index
       
         @product = Product.all
         @product = @product.where(category_id: params[:category_id]) if params[:category_id].present?
+        @user = User.all
     end
 
     def new
@@ -12,8 +28,9 @@ class ProductsController < ApplicationController
     end
 
     def show
+      @product = Product.where(id: params[:id]).first
+  end
 
-    end
     def create
         @product = Product.new(product_params)
           
@@ -75,6 +92,5 @@ class ProductsController < ApplicationController
         params.require(:product).permit(:name, :price, :description, :status, :category_id ,:image)
       end
 
-
-
+      
 end

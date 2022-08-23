@@ -1,8 +1,8 @@
 class AdminController < ApplicationController
-  def index
-
+  
+    def index
     @users = User.all
-    # @admin = Admin.all
+      # @admin = Admin.all
+    end
 
-  end
 end
