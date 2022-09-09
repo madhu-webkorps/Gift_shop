@@ -1,10 +1,10 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
    
-    before_action :authenticate_user!
+    # before_action :authenticate_user!
     protect_from_forgery with: :exception
-    before_action :initialize_session
-    before_action :load_cart
+    # before_action :initialize_session
+    # before_action :load_cart
    
     def after_sign_in_path_for(resource)
       if current_user.role == 'admin'

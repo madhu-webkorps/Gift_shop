@@ -18,6 +18,13 @@ class ProductsController < ApplicationController
     def index
       
         @product = Product.all
+
+        respond_to do |format|
+          format.html
+          format.pdf do
+            pdf = Prawn::Document.new
+            send_data pdf.render, filename: 'product.pdf', type: 'application/pdf'
+          end
         @product = @product.where(category_id: params[:category_id]) if params[:category_id].present?
         @user = User.all
     end
@@ -29,7 +36,7 @@ class ProductsController < ApplicationController
 
     def show
       @product = Product.where(id: params[:id]).first
-  end
+    end
 
     def create
         @product = Product.new(product_params)
@@ -51,7 +58,7 @@ class ProductsController < ApplicationController
             format.js
           end
         end
-   end
+    end
 
       def update
         respond_to do |format|
@@ -81,7 +88,8 @@ class ProductsController < ApplicationController
       end
    end
 
-      private
+     
+  #  private
       # Use callbacks to share common setup or constraints between actions.
       def set_product
         @product = Product.find(params[:id])
@@ -93,4 +101,5 @@ class ProductsController < ApplicationController
       end
 
       
-end
+    end
+  end
